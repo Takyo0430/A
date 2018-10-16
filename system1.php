@@ -9,5 +9,5 @@ require_once _ROOT_DIR . '../php_libs/init.php';
 $controller = new SystemController();
 $controller->run();
 
-//ココに追加
+
 exit;
