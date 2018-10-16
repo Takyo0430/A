@@ -10,4 +10,6 @@ $controller = new SystemController();
 $controller->run();
 
 //ココに追加
+//さよなら
+
 exit;
