@@ -19,8 +19,9 @@
             </td>
 
             <td sytyle align="left">
-                [ <a href="{$SCRIPT_NAME}?type=list&action=form">会員一覧</a> ]   会員の検索・更新・削除を行います。<br>
-                [ <a href="{$SCRIPT_NAME}?type=notice&action=form">お知らせ</a> ]   会員トップページのお知らせを更新します。<br>
+              <br><br>
+                [ <a href="{$SCRIPT_NAME}?type=smartphonelist&action=form">スマートフォン一覧</a> ]   スマートフォンの検索・更新・削除を行います。<br>
+                [ <a href="{$SCRIPT_NAME}?type=memberlist&action=form">メンバーの一覧</a> ]  メンバーの検索・更新・削除を行います。<br>
                 <br>
 
             </td>
