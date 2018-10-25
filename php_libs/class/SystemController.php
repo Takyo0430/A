@@ -138,8 +138,8 @@ class SystemController extends Controller {
             }
         }
         // データベースを操作します。
-        $MemberModel = new MainModel();
-        list($data, $count) = $MemberModel->get_smartphone_list($sql_search_key);
+        $MainModel = new MainModel();
+        list($data, $count) = $MainModel->get_smartphone_list($sql_search_key);
         list($data, $links) = $this->make_page_link($data);
 
         $this->view->assign('count', $count);

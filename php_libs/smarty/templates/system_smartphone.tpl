@@ -35,16 +35,20 @@
             {if ($data) }
             <table border="1">
               <tbody>
-                <tr><th>番号</th><th>name</th><th>　</th><th>　</th></tr>
+                <tr><th>番号</th><th>資産番号</th><th>名称</th><th>貸出状態</th><th>返却日</th><th>借りている人</th><th>　</th></tr>
 
 
 
                 {foreach item=item from=$data}
                 <tr>
                   <td>{$item.id}</td>
+                  <td>{$item.asset_number|escape:"html"}</td>
                   <td>{$item.name|escape:"html"}</td>
+                  <td>{$item.reservation|escape:"html"}</td>
+                  <td>{$item.return_date|escape:"html"}</td>
+                  <td>{$item.who|escape:"html"}</td>
                   <td>[<a href="{$SCRIPT_NAME}?type=modify&action=form&id={$item.id}{$add_pageID}">更新</a>]</td>
-                  <td>[<a href="{$SCRIPT_NAME}?type=delete&action=confirm&id={$item.id}{$add_pageID}">削除</a>]</td>
+                  <!--<td>[<a href="{$SCRIPT_NAME}?type=delete&action=confirm&id={$item.id}{$add_pageID}">削除</a>]</td>-->
                 </tr>
                 {/foreach}
 
