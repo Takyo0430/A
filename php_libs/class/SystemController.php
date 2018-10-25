@@ -11,10 +11,10 @@ class SystemController extends Controller {
         $this->auth->set_sessname(_SYSTEM_SESSNAME);
         $this->auth->start();
 
-        if (!$this->auth->check() && $this->type != 'authenticate'){
+        /*if (!$this->auth->check() && $this->type != 'authenticate'){
             // 未認証
             $this->type = 'login';
-        }
+        }*/
 
         // 共用のテンプレートなどをこのフラグで管理用に切り替えます。
         $this->is_system = true;
@@ -32,9 +32,10 @@ class SystemController extends Controller {
                 break;
 
             case "smartphonelist":
-              $this->screen_list();
+              $this->screen_smartphone();
               break;
             case "memberlist":
+              $this->screen_list();
               break;
             default:
                 $this->screen_top();
