@@ -15,7 +15,6 @@
           [ <a href="{$SCRIPT_NAME}">トップページへ</a> ]
           <br>
           <br>
-          {$disp_login_state}
         </td>
         <td>
           <p>[ <a href="{$SCRIPT_NAME}?type=regist&action=form{$add_pageID}">新規登録</a> ]
@@ -36,21 +35,14 @@
             {if ($data) }
             <table border="1">
               <tbody>
-                <tr><th>番号</th><th>username</th><th>jobname</th><th>hp</th><th>atk</th><th>def</th><th>agt</th><th>level</th><th>exp</th><th>　</th><th>　</th></tr>
+                <tr><th>番号</th><th>name</th><th>　</th><th>　</th></tr>
 
-                
+
 
                 {foreach item=item from=$data}
                 <tr>
                   <td>{$item.id}</td>
-                  <td>{$item.username|escape:"html"}</td>
-                  <td>{$item.jobname|escape:"html"}</td>
-                  <td>{$item.hp|escape:"html"}</td>
-                  <td>{$item.atk|escape:"html"}</td>
-                  <td>{$item.def|escape:"html"}</td>
-                  <td>{$item.agt|escape:"html"}</td>
-                  <td>{$item.lv|escape:"html"}</td>
-                  <td>{$item.exp|escape:"html"}</td>
+                  <td>{$item.name|escape:"html"}</td>
                   <td>[<a href="{$SCRIPT_NAME}?type=modify&action=form&id={$item.id}{$add_pageID}">更新</a>]</td>
                   <td>[<a href="{$SCRIPT_NAME}?type=delete&action=confirm&id={$item.id}{$add_pageID}">削除</a>]</td>
                 </tr>
