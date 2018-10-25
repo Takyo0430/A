@@ -15,7 +15,6 @@
                 [ <a href="{$SCRIPT_NAME}?type=logout">ログアウト</a> ]
                 <br>
                 <br>
-                {$disp_login_state}
             </td>
 
             <td sytyle align="left">
