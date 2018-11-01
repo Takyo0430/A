@@ -277,5 +277,101 @@
       $MainModel->return($_GET['id']);
     }
 
+    public function member_regist()
+    {
+        $btn = "";
+        $btn2 = "";
+        $this->file = "memberinfo_form.tpl"; // デフォルト
+
+        // フォーム要素のデフォルト値を設定
+
+        $this->make_form_controle();
+        // フォームの妥当性検証
+        if (!$this->form->validate()) {
+            $this->action = "form";
+        }
+
+        if ($this->action == "form") {
+            $this->title = '新規登録画面';
+            $this->next_type = 'memberregist';
+            $this->next_action = 'confirm';
+            $btn = '確認画面へ';
+        } else {
+            if ($this->action == "confirm") {
+                $this->title = '確認画面dayo';
+                $this->next_type = 'memberregist';
+                $this->next_action = 'complete';
+                $this->form->toggleFrozen(true);
+                $btn = '登録する';
+                $btn2 = '戻る';
+            } else {
+                if ($this->action == "complete" && isset($_POST['submit2']) && $_POST['submit2'] == '戻る') {
+                    $this->title = '新規登録画面';
+                    $this->next_type = 'memberregist';
+                    $this->next_action = 'confirm';
+                    $btn = '確認画面へ';
+                } else {
+                  if ($this->action == "complete" && isset($_POST['submit']) && $_POST['submit'] == '登録する') {
+                    $MainModel = new MainModel();
+                    $userdata = $this->form->getValue();
+                    if ($this->is_system) {
+                      $MemberModel = new MemberModel();
+                      $MemberModel->regist_member($userdata);
+                      $this->title = '登録完了画面';
+                      $this->message = "登録を完了しました。";
+                    } else {
+                      $MemberModel = new MemberModel();
+                      $MemberModel->regist_member($userdata);
+                      $this->title = '登録完了画面';
+                      $this->message = "入力されたIDを登録しました。<br>";
+                    }
+                    $this->file = "message.tpl";
+                  }
+                }
+            }
+        }
+        $this->form->addElement('submit', 'submit', ['value' =>$btn]);
+        $this->form->addElement('submit', 'submit2', ['value' =>$btn2]);
+        $this->form->addElement('reset', 'reset', ['value' =>'取り消し']);
+        $this->view_display();
+    }
+
+    public function member_delete()
+    {
+        // データベースを操作します。
+        $MainModel = new MainModel();
+        $MemberModel = new MemberModel();
+        if ($this->action == "confirm") {
+            if ($this->is_system) {
+                $_SESSION[_MEMBER_AUTHINFO] = $MemberModel->get_member_data_id($_GET['id']);
+                $this->message = "[削除する]をクリックすると　";
+                $this->message .= htmlspecialchars($_SESSION[_MEMBER_AUTHINFO]['name'], ENT_QUOTES);
+
+                $this->message .= "さん　の情報を削除します。";
+                $this->form->addElement('submit', 'submit', ['value' => '削除する']);
+            } else {
+                $this->message = "[退会する]をクリックすると情報を削除します。";
+                $this->form->addElement('submit', 'submit', ['value' => '退会する']);
+            }
+            $this->next_type = 'memberdelete';
+            $this->next_action = 'complete';
+            $this->title = '削除確認画面';
+            $this->file = 'delete_form.tpl';
+        } else {
+            if ($this->action == "complete") {
+                $MainModel->delete_member($_SESSION[_MEMBER_AUTHINFO]['id']);
+                if ($this->is_system) {
+                    unset($_SESSION[_MEMBER_AUTHINFO]);
+                } else {
+                    $this->auth->logout();
+                }
+                $this->message = "会員情報を削除しました。";
+                $this->title = '削除完了画面';
+                $this->file = 'message.tpl';
+            }
+        }
+        $this->view_display();
+    }
+
 }
   ?>
