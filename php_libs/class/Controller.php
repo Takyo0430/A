@@ -131,6 +131,9 @@
 
         $name =  $this->form->addElement('text',  'name',  ['size' => 30], ['label' => 'Slack名'] );
 
+        $smartname =  $this->form->addElement('text',  'smartname',  ['size' => 30], ['label' => '名称'] );
+        $asset_number =  $this->form->addElement('text',  'asset_number',  ['size' => 8], ['label' => ' 資産番号'] );
+
 
         $this->form->addRecursiveFilter('trim');
 
