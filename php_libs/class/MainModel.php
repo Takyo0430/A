@@ -115,6 +115,42 @@ EOS;
         }
     }
 
+    public function regist_smartphone($data){
+      try {
+          $this->pdo->beginTransaction();
+          $sql = "INSERT  INTO smartphone (asset_number, name, reservation, return_date, who) VALUES (:asset_number, :name, '貸出可', null, null)";
+          $stmh = $this->pdo->prepare($sql);
+          $stmh->bindValue(':asset_number',   $data['asset_number'],   PDO::PARAM_STR );
+          $stmh->bindValue(':name',   $data['smartname'],   PDO::PARAM_STR );
+          $stmh->execute();
+          $this->pdo->commit();
+      } catch (PDOException $Exception) {
+          $this->pdo->rollBack();
+          print "エラー：" . $Exception->getMessage();
+      }
+    }
+
+    public function modify_smartphone($userdata){
+      try {
+            $this->pdo->beginTransaction();
+            $sql = "UPDATE  smartphone
+                      SET
+                        asset_number   = :asset_number,
+                        name   = :name
+                      WHERE id = :id";
+            $stmh = $this->pdo->prepare($sql);
+            $stmh->bindValue(':name',   $userdata['smartname'],   PDO::PARAM_STR );
+            $stmh->bindValue(':asset_number',   $userdata['asset_number'],   PDO::PARAM_STR );
+            $stmh->bindValue(':id',         $userdata['id'],         PDO::PARAM_INT );
+            $stmh->execute();
+            $this->pdo->commit();
+            //print "データを" . $stmh->rowCount() . "件、更新しました。<br>";
+        } catch (PDOException $Exception) {
+            $this->pdo->rollBack();
+            print "エラー：" . $Exception->getMessage();
+        }
+    }
+
     public function delete_member($id){
         try {
             $this->pdo->beginTransaction();
