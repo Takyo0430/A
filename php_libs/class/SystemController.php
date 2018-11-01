@@ -34,8 +34,18 @@ class SystemController extends Controller {
             case "smartphonelist":
               $this->screen_smartphone();
               break;
+            case "smartphoneregist":
+              $this->smartphone_regist();
+              break;
+
             case "memberlist":
               $this->screen_list();
+              break;
+            case "memberregist":
+              $MainController->member_regist();
+              break;
+            case "memberdelete":
+              $MainController->member_delete();
               break;
             default:
                 $this->screen_top();
@@ -112,7 +122,7 @@ class SystemController extends Controller {
         $this->view->assign('data', $data);
         $this->view->assign('search_key', $disp_search_key);
         $this->view->assign('links', $links['all']);
-        $this->title = '管理 - 会員一覧画面';
+        $this->title = '管理 - 研究室メンバー画面';
         $this->file = 'system_list.tpl';
         $this->view_display();
     }
@@ -146,7 +156,7 @@ class SystemController extends Controller {
         $this->view->assign('data', $data);
         $this->view->assign('search_key', $disp_search_key);
         $this->view->assign('links', $links['all']);
-        $this->title = '管理 - 会員一覧画面';
+        $this->title = '管理 - 研究室メンバー画面';
         $this->file = 'system_smartphone.tpl';
         $this->view_display();
     }
