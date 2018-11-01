@@ -115,6 +115,20 @@ EOS;
         }
     }
 
+    public function delete_member($id){
+        try {
+            $this->pdo->beginTransaction();
+            $sql = "DELETE FROM member WHERE id = :id";
+            $stmh = $this->pdo->prepare($sql);
+            $stmh->bindValue(':id', $id, PDO::PARAM_INT );
+            $stmh->execute();
+            $this->pdo->commit();
+            //print "データを" . $stmh->rowCount() . "件、削除しました。<br>";
+        } catch (PDOException $Exception) {
+            $this->pdo->rollBack();
+            print "エラー：" . $Exception->getMessage();
+        }
+    }
 
 
     public function return($id){
