@@ -10,7 +10,7 @@
 <hr>
     <table>
       <tr>
-        
+
       <td style="vertical-align: top;">
 	[ <a href="{$SCRIPT_NAME}">トップページへ</a> ]
 {if ($is_system) }
@@ -20,9 +20,8 @@
 {/if}
 	<br>
 	<br>
-	{$disp_login_state}
       </td>
-        
+
       <td>
         <form {$form.attributes}>
 	{$message}
