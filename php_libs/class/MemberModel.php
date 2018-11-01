@@ -2,6 +2,20 @@
 
 class MemberModel extends BaseModel {
 
+  public function regist_member($userdata){
+        try {
+            $this->pdo->beginTransaction();
+            $sql = "INSERT  INTO member (name) VALUES (:name)";
+            $stmh = $this->pdo->prepare($sql);
+            $stmh->bindValue(':name',   $userdata['name'],   PDO::PARAM_STR );
+            $stmh->execute();
+            $this->pdo->commit();
+        } catch (PDOException $Exception) {
+            $this->pdo->rollBack();
+            print "エラー：" . $Exception->getMessage();
+        }
+    }
+
   public function get_member_data(){
       $member_array = [];
       try {
@@ -15,6 +29,21 @@ class MemberModel extends BaseModel {
       }
       return $member_array;
   }
+
+  public function get_member_data_id($id){
+        $data = [];
+        try {
+            $sql= "SELECT * FROM member WHERE id = :id limit 1";
+            $stmh = $this->pdo->prepare($sql);
+            $stmh->bindValue(':id', $id, PDO::PARAM_INT );
+            $stmh->execute();
+            $data = $stmh->fetch(PDO::FETCH_ASSOC);
+        } catch (PDOException $Exception) {
+            print "エラー：" . $Exception->getMessage();
+        }
+        return $data;
+    }
+
   public function get_name_id($id){
     $name = "";
     try {
