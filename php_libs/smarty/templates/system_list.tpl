@@ -17,7 +17,7 @@
           <br>
         </td>
         <td>
-          <p>[ <a href="{$SCRIPT_NAME}?type=regist&action=form{$add_pageID}">新規登録</a> ]
+          <p>[ <a href="{$SCRIPT_NAME}?type=memberregist&action=form{$add_pageID}">新規登録</a> ]
             <br>
 
             <form {$form.attributes}>
@@ -35,7 +35,7 @@
             {if ($data) }
             <table border="1">
               <tbody>
-                <tr><th>番号</th><th>name</th><th>　</th><th>　</th></tr>
+                <tr><th>番号</th><th>name</th><th>　</th></tr>
 
 
 
@@ -43,8 +43,7 @@
                 <tr>
                   <td>{$item.id}</td>
                   <td>{$item.name|escape:"html"}</td>
-                  <td>[<a href="{$SCRIPT_NAME}?type=modify&action=form&id={$item.id}{$add_pageID}">更新</a>]</td>
-                  <td>[<a href="{$SCRIPT_NAME}?type=delete&action=confirm&id={$item.id}{$add_pageID}">削除</a>]</td>
+                  <td>[<a href="{$SCRIPT_NAME}?type=memberdelete&action=confirm&id={$item.id}{$add_pageID}">削除</a>]</td>
                 </tr>
                 {/foreach}
 
