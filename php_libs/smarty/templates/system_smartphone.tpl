@@ -17,7 +17,7 @@
           <br>
         </td>
         <td>
-          <p>[ <a href="{$SCRIPT_NAME}?type=regist&action=form{$add_pageID}">新規登録</a> ]
+          <p>[ <a href="{$SCRIPT_NAME}?type=memberregist&action=form{$add_pageID}">新規登録</a> ]
             <br>
 
             <form {$form.attributes}>
