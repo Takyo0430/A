@@ -129,6 +129,8 @@
         $start = $this->form->addElement('date', 'start_date', null, ['label' => '借用開始日'] + $options);
         $finish = $this->form->addElement('date', 'return_date', null, ['label' => '返却日'] + $options);
 
+        $name =  $this->form->addElement('text',  'name',  ['size' => 30], ['label' => 'Slack名'] );
+
 
         $this->form->addRecursiveFilter('trim');
 
