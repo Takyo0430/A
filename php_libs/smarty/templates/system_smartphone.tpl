@@ -17,7 +17,7 @@
           <br>
         </td>
         <td>
-          <p>[ <a href="{$SCRIPT_NAME}?type=memberregist&action=form{$add_pageID}">新規登録</a> ]
+          <p>[ <a href="{$SCRIPT_NAME}?type=smartphoneregist&action=form{$add_pageID}">新規登録</a> ]
             <br>
 
             <form {$form.attributes}>
@@ -47,7 +47,7 @@
                   <td>{$item.reservation|escape:"html"}</td>
                   <td>{$item.return_date|escape:"html"}</td>
                   <td>{$item.who|escape:"html"}</td>
-                  <td>[<a href="{$SCRIPT_NAME}?type=modify&action=form&id={$item.id}{$add_pageID}">更新</a>]</td>
+                  <td>[<a href="{$SCRIPT_NAME}?type=smartphonemodify&action=form&id={$item.id}{$add_pageID}">更新</a>]</td>
                   <!--<td>[<a href="{$SCRIPT_NAME}?type=delete&action=confirm&id={$item.id}{$add_pageID}">削除</a>]</td>-->
                 </tr>
                 {/foreach}
